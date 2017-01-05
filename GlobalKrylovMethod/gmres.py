@@ -85,13 +85,12 @@ def gmres(A, B, m=200, X0=None, tol=1e-8, maxit=None, M1=None, callback=None):
             # Construct orthonormal basis
             # using Gram-Schmidt
             W = M1.solve(A.dot(V[i]))
-            for k in range(0, i):
+            for k in range(0, i+1):
                 H[k, i] = dot(W, V[k])
                 W = W - H[k, i]*V[k]
-                print(dot(W, V[k]))
             H[i+1, i] = norm(W)
             V[i+1] = W/H[i+1, i]
-            for k in range(0, i-1):
+            for k in range(0, i):
                 # Apply Givens rotation
                 temp = cs[k]*H[k, i] + sn[k]*H[k+1, i]
                 H[k+1, i] = -sn[k]*H[k, i] + cs[k]*H[k+1, i]
