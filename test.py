@@ -17,7 +17,7 @@ Xsol = np.ones(n)/float(n)
 B = A.dot(Xsol)
 bnrm = np.linalg.norm(B)
 res = convergeceHistory()
-X, info = gmres(A, B, tol = 1e-5,  = 200, callback = res.callback)
+X, info = gmres(A, B, tol=1e-5, maxit=200, callback=res.callback)
 msg = "Info = {:d}, residual = {:f}, error = {:f}".format(info, 
        np.linalg.norm(B - A.dot(X))/bnrm, np.linalg.norm(Xsol - X))
 print(msg)
