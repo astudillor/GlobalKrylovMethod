@@ -12,9 +12,11 @@ class convergeceHistory:
         self.resvec.append(_rnrm_)
 f = 'fs_680_1.mtx'
 A = io.mmread(f).tocsr()
+
 n = A.shape[0]
-Xsol = np.ones(n)/float(n)
+Xsol = np.ones((n,5))/float(n)
 B = A.dot(Xsol)
+
 bnrm = np.linalg.norm(B)
 res = convergeceHistory()
 X, info = gmres(A, B, tol=1e-5, maxit=200, callback=res.callback)
